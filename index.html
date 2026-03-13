@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北京市城镇住房建设年代演化</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="nav-bar">
+      <a href="./index.html" class="nav-link active">时间趋势</a>
+      <a href="./map.html" class="nav-link">行政区分布</a>
+    </nav>
+    <h1 class="site-title">北京市城镇住房建设年代演化</h1>
+    <p class="site-subtitle">基于建设用地城镇住宅数据，展示各历史年份住房规模的变化趋势</p>
+  </div>
+</header>
+
+<main class="main-content">
+  <!-- KPI Cards -->
+  <section class="kpi-section">
+    <div class="kpi-card">
+      <span class="kpi-label">时间跨度</span>
+      <span class="kpi-value" id="kpi-span">—</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">住宅总套数</span>
+      <span class="kpi-value" id="kpi-units">—</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">建筑总面积</span>
+      <span class="kpi-value" id="kpi-area">—</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">整体套均面积</span>
+      <span class="kpi-value" id="kpi-avg">—</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">涉及地块数</span>
+      <span class="kpi-value" id="kpi-plots">—</span>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="controls-section">
+    <div class="control-group">
+      <label class="control-label">指标选择</label>
+      <div class="toggle-group" id="metricToggle">
+        <button class="toggle-btn active" data-metric="units">住宅套数</button>
+        <button class="toggle-btn" data-metric="area">建筑面积</button>
+        <button class="toggle-btn" data-metric="avgArea">套均面积</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">图表类型</label>
+      <div class="toggle-group" id="chartTypeToggle">
+        <button class="toggle-btn active" data-type="bar">柱状图</button>
+        <button class="toggle-btn" data-type="line">折线图</button>
+        <button class="toggle-btn" data-type="cumulative">累计曲线</button>
+      </div>
+    </div>
+    <div class="control-group range-group">
+      <label class="control-label">年份范围</label>
+      <div class="range-display">
+        <span id="rangeStart">早于1949</span> — <span id="rangeEnd">2020</span>
+      </div>
+      <div class="range-slider-container">
+        <input type="range" id="rangeMin" min="0" max="71" value="0" class="range-slider">
+        <input type="range" id="rangeMax" min="0" max="71" value="71" class="range-slider">
+      </div>
+    </div>
+  </section>
+
+  <!-- Chart -->
+  <section class="chart-section">
+    <div class="chart-container">
+      <canvas id="mainChart"></canvas>
+    </div>
+  </section>
+
+  <!-- Data Table -->
+  <section class="table-section">
+    <div class="table-header">
+      <h2 class="section-title">详细数据</h2>
+      <button class="sort-hint" id="sortToggle">点击列标题排序</button>
+    </div>
+    <div class="table-wrapper">
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th data-sort="label" class="sortable sorted-asc">建设年份 ▲</th>
+            <th data-sort="units" class="sortable numeric">住宅套数（套）</th>
+            <th data-sort="area" class="sortable numeric">建筑面积（m²）</th>
+            <th data-sort="avgArea" class="sortable numeric">套均面积（m²）</th>
+            <th data-sort="plots" class="sortable numeric">涉及地块数</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+        <tfoot id="tableFoot"></tfoot>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>数据来源：北京市城镇住房建设年代数据（建设用地维度）</p>
+  <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">
+    Created with Perplexity Computer
+  </a>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>

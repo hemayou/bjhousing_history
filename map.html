@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北京市住房分布地图 — 行政区维度</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="./map-style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="nav-bar">
+      <a href="./index.html" class="nav-link">时间趋势</a>
+      <a href="./map.html" class="nav-link active">行政区分布</a>
+    </nav>
+    <h1 class="site-title">北京市城镇住房建设 · 行政区分布</h1>
+    <p class="site-subtitle">各区不同建设年代城镇住宅的套数与建筑面积分布</p>
+  </div>
+</header>
+
+<main class="main-content">
+  <!-- Controls -->
+  <section class="controls-section">
+    <div class="control-group">
+      <label class="control-label">展示指标</label>
+      <div class="toggle-group" id="metricToggle">
+        <button class="toggle-btn active" data-metric="units">住宅套数</button>
+        <button class="toggle-btn" data-metric="area">建筑面积</button>
+        <button class="toggle-btn" data-metric="avgArea">套均面积</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">时间粒度</label>
+      <div class="toggle-group" id="granularityToggle">
+        <button class="toggle-btn active" data-granularity="yearly">单年</button>
+        <button class="toggle-btn" data-granularity="fiveYear">五年汇总</button>
+      </div>
+    </div>
+    <div class="control-group year-control">
+      <label class="control-label">建设年份</label>
+      <div class="year-display">
+        <span id="yearLabel" class="year-value">全部年份</span>
+        <button id="playBtn" class="play-btn" title="播放动画">▶</button>
+      </div>
+      <div class="slider-wrapper">
+        <input type="range" id="yearSlider" min="0" max="72" value="72" class="year-slider">
+      </div>
+      <div class="slider-labels">
+        <span id="sliderLabelStart">早于1949</span>
+        <span>全部</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map + Sidebar -->
+  <section class="map-section">
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="sidebar" id="sidebar">
+      <h3 class="sidebar-title">各区排名</h3>
+      <div class="sidebar-metric" id="sidebarMetric">住宅套数</div>
+      <div id="rankList" class="rank-list"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>数据来源：北京市城镇住房建设年代数据（建设用地维度）</p>
+  <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">
+    Created with Perplexity Computer
+  </a>
+</footer>
+
+<script src="./map-app.js"></script>
+</body>
+</html>
